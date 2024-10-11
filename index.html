@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Generator</title>
+    <link rel="stylesheet" href="/static/style.css"> <!-- Link to your custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        .container {
+            width: 600px;
+            margin: 0 auto;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+        }
+        .output-images img {
+            max-width: 100px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Story Generator</h1>
+        <form id="storyForm">
+            <label for="characters">Characters (comma-separated):</label>
+            <input type="text" id="characters" name="characters" required>
+
+            <label for="plot">Plot:</label>
+            <textarea id="plot" name="plot" rows="4" required></textarea>
+
+            <label for="age_range">Age Range:</label>
+            <input type="text" id="age_range" name="age_range" required>
+
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" name="genre" required>
+
+            <label for="max_length">Maximum Story Length:</label>
+            <input type="number" id="max_length" name="max_length" value="100" required>
+
+            <button type="submit">Generate Story</button>
+        </form>
+
+        <div class="output">
+            <h2>Generated Story:</h2>
+            <p id="storyContent"></p>
+        </div>
+
+        <div class="output-images">
+            <h2>Generated Images:</h2>
+            <div id="imageContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('storyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const characters = document.getElementById('characters').value.split(',');
+            const plot = document.getElementById('plot').value;
+            const age_range = document.getElementById('age_range').value;
+            const genre = document.getElementById('genre').value;
+            const max_length = document.getElementById('max_length').value;
+
+            // Make a POST request to the FastAPI backend
+            fetch('/generate-story', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    characters: characters,
+                    plot: plot,
+                    age_range: age_range,
+                    genre: genre,
+                    max_length: parseInt(max_length)
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the generated story
+                document.getElementById('storyContent').textContent = data.story;
+
+                // Display fetched images
+                const imageContainer = document.getElementById('imageContainer');
+                imageContainer.innerHTML = '';  // Clear previous images
+                data.images.forEach(imgUrl => {
+                    const img = document.createElement('img');
+                    img.src = imgUrl;
+                    imageContainer.appendChild(img);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
