@@ -1,0 +1,60 @@
+body{
+    background-color: #c6b9ff;
+    font-family: "Times New Roman", Times, serif;
+    font-size:20px;
+    }
+    h1{
+    text-align: center;
+    color:#4158A6;
+    font-family: 'Copperplate';
+    }
+    h5{
+    font-family:'Garamond';
+    text-align:left;
+    font-size: 30px;
+    }
+    .div-contain{
+     padding: 10px;           
+      width: fit-content;      
+      margin: 10px;  
+    background-color: #FFA62F;
+    }
+    .div2{
+    text-align:center;
+    padding: 5px;           
+      width: fit-content;      
+      margin: 2px; 
+    background-color: #ff8377;
+    width: 50%;
+        margin: 0 auto;
+    }
+    .divall{
+      border-width: 5px;
+        border-style: dotted;
+        border-color: #f44336;
+    }
+    input[type="text"], input[type="email"], input[type="number"], textarea, select {
+        width: 600px;
+        height: 40px;
+        padding: 30px;
+        font-size: 16px;
+        margin: 5px 0;
+    }
+    
+    textarea {
+        width: 600px;     
+        height: 100px;
+    }
+    
+    button {
+        padding: 50px 50px;
+        font-size: 23px;
+        background-color:#FAC213;
+        color: white;
+        border: 2px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }

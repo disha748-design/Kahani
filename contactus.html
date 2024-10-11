@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="icon" href="C:/Users/disha/Downloads/favicon_io (1)/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css"> <!-- Link your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Font style */
+            margin: 0;
+            padding: 0;
+            background-color: #FFECC8; /* Light background color */
+            color: #333; /* Text color */
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #B99470; /* Header background color */
+            color: white; /* Text color */
+        }
+
+        .container {
+            max-width: 600px; /* Limit the width of the form */
+            margin: 20px auto; /* Center the form */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* White background for form */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for form */
+        }
+
+        h2 {
+            text-align: center; /* Center the heading */
+        }
+
+        input, textarea {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding inside inputs */
+            margin: 10px 0; /* Margin between inputs */
+            border: 1px solid #ccc; /* Border style */
+            border-radius: 4px; /* Rounded corners */
+            font-size: 1rem; /* Font size */
+        }
+
+        button {
+            background-color: #B99470; /* Button background color */
+            color: white; /* Button text color */
+            padding: 10px; /* Padding inside button */
+            border: none; /* Remove border */
+            border-radius: 4px; /* Rounded corners */
+            cursor: pointer; /* Cursor change on hover */
+            font-size: 1rem; /* Font size */
+            width: 100%; /* Full width */
+        }
+
+        button:hover {
+            background-color: #A66E38; /* Darker shade on hover */
+        }
+
+        /* Footer styles */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #B99470; /* Footer background color */
+            color: white; /* Text color */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>Contact Us</h1>
+    </header>
+
+    <!-- Contact Form Container -->
+    <div class="container">
+        <h2>We'd love to hear from you!</h2>
+        <form action="submit_form.php" method="post"> <!-- Change action to your form handling script -->
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Super 3</p>
+    </footer>
+
+</body>
+</html>

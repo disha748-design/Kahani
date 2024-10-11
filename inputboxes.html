@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Generator</title>
+    <style>
+        body { font-family: 'Press Start 2P', monospace; background-color: #FFECC8; }
+        .header { background-color: #B99470; color: #FFECC8; padding: 20px; text-align: center; }
+        section { background-color: rgba(166, 110, 56, 0.9); padding: 30px; border-radius: 10px; margin: 20px auto; width: 90%; max-width: 600px; }
+        form { display: flex; flex-direction: column; }
+        label, textarea, input, button { margin-bottom: 10px; }
+        button { padding: 10px; background-color: #B99470; color: #FFECC8; cursor: pointer; border: none; }
+        #story-output { margin-top: 20px; padding: 15px; background-color: #FFF2E1; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Story Generator</h1>
+    </header>
+
+    <section>
+        <form id="story-form">
+            <label for="characters">Characters:</label>
+            <input type="text" id="characters" name="characters" required>
+
+            <label for="plot">Plot:</label>
+            <textarea id="plot" name="plot" required></textarea>
+
+            <label for="age-group">Target Age Group:</label>
+            <input type="text" id="age-group" name="age-group" required>
+
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" name="genre" required>
+
+            <button type="submit">Generate Story</button>
+        </form>
+    </section>
+
+    <script>
+        // Form submission handler
+        document.getElementById('story-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form data
+            const characters = document.getElementById('characters').value;
+            const plot = document.getElementById('plot').value;
+            const age_group = document.getElementById('age-group').value;
+            const genre = document.getElementById('genre').value;
+
+            // Prepare data to send to the backend
+            const data = {
+                characters: characters,
+                plot: plot,
+                age_group: age_group,
+                genre: genre
+            };
+
+            // Send the data to the backend via fetch
+            fetch('http://127.0.0.1:5000/generate_story', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the generated story
+                document.getElementById('story-output').innerText = data.story;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
